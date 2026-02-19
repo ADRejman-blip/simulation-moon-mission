@@ -1,39 +1,36 @@
-#ifndef ASTRONAUT_H  // "Include Guard" - verhindert Fehler beim Kompilieren
+#ifndef ASTRONAUT_H
 #define ASTRONAUT_H
 
 #include <iostream>
 
-using namespace std; 
-
 class Astronaut {
 private:
     std::string name;
-    int alter;
-    double gewicht;
-    std::string beruf;
-    //vitalwerte
-    double gesundheit;
-    double sauerstoff;
-    bool lebt_noch;
-
+    int age;
+    double weight;
+    std::string profession;
+    // vital stats
+    double health;
+    double oxygen;
+    bool isAlive;
 
 public:
-    // Hier stehen nur die Funktions-Köpfe (Prototypen)
-    Astronaut(std::string n, int a, double g, std::string b); // Konstruktor
-    
-    void essen();
-    void arbeiten();
-    void statusBericht();
+    // Function prototypes
+    Astronaut(std::string n, int a, double w, std::string p); // constructor
+
+    void eat();
+    void work();
+    void statusReport();
     void report_status();
     std::string getName();
-    int getalter();
-    double getgewicht();
-    std::string getberuf();
-    bool getisAlive();
-    double getGesundheit();
-    double getSauerstoff();
-    void setGesundheit(double neuerWert);
-    void setSauerstoff(double neuerWert);
+    int getAge();
+    double getWeight();
+    std::string getProfession();
+    bool getIsAlive();
+    double getHealth();
+    double getOxygen();
+    void setHealth(double newValue);
+    void setOxygen(double newValue);
 
 };
 

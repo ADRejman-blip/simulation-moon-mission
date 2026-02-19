@@ -6,10 +6,10 @@ using std::cin;
 
 
 int main(){
-    Astronaut tom("Tom Major", 34, 80.4, "Geologe");
-    
-    tom.arbeiten();
-    tom.statusBericht();
+    Astronaut tom("Tom Major", 34, 80.4, "Geologist");
+
+    tom.work();
+    tom.statusReport();
 
 
     return 0;

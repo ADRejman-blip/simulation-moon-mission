@@ -1,109 +1,104 @@
-#ifndef RAKETE_H  // "Include Guard" - verhindert Fehler beim Kompilieren
+#ifndef RAKETE_H
 #define RAKETE_H
 
 #include <iostream>
-using std::cout;
-using std::cin;
 
-struct Triebwerk{
-    std::string bezeichnung;//
-    double schubkraft;//in N
-    double verbrauch;//KG/s
-    double masse;//KG
+struct Engine{
+    std::string designation;
+    double thrust; // N
+    double consumption; // kg/s
+    double mass; // kg
 };
 
-struct Kapsel{
-    std::string typ;//
-    double leermasse;//gewicht ohne crew
-    int maxCrew;//Max crewmitglieder
-    double hitzeschildZustand;//100 optimal 0-> Tod
-    bool hatFallschirm;
-
+struct Capsule{
+    std::string type;
+    double emptyMass; // weight without crew and supplies
+    int maxCrew; // max crew
+    double heatShieldCondition; // 100 optimal, 0 -> destroyed
+    bool hasParachute;
 };
 
-struct Rumpf{
-    std::string material;//
-    double leermasse;//gewicht ohne sprit
-    double maxTreibstoff;//KG sprit
+struct Fuselage{
+    std::string material;
+    double emptyMass; // weight without fuel
+    double maxFuel; // kg
 };
 
-struct Spitze{
-    double cwWert;//Cw
-    double stirnfläche;//A
-    double masse;//KG
-    double aerodynamikFaktor;//Luftwiederstand verringern
-    bool istAbwerfbar;//im all abwerfen
-
+struct NoseCone{
+    double dragCoefficient; // Cw
+    double frontalArea; // A
+    double mass; // kg
+    double aerodynamicFactor; // reduce drag
+    bool isJettisonable; // can be dropped in space
 };
 
 struct Booster{
-    double schubkraft;//N
-    double gesamtmasse;//inkl Brennstoff
-    double brenndauer;//in sec
-    bool istAktiv;//Schieben ja oder nein
+    double thrust; // N
+    double totalMass; // incl. fuel
+    double burnTime; // seconds
+    bool isActive;
 };
 
-struct Solarpanel{
-    std::string modell;
-    double masse;//KG
-    double Fläche;//m^2
-    double wirkungsgrad;//%Effi der Panels
-    //Stromlogik
-    double WinkelzurSonne;//0°Ideal,90° kein Strom
-    bool istAusgefahren;//Beim start eingeklappt
-    bool istDefekt;//wenn irgendwie beschädigt
+struct SolarPanel{
+    std::string model;
+    double mass; // kg
+    double area; // m^2
+    double efficiency; // panel efficiency
+    // power logic
+    double angleToSun; // 0° ideal, 90° no power
+    bool isDeployed; // folded at launch
+    bool isBroken;
 };
 
-struct Batterie{
-    double maxKapazität;
-    double aktuelleLadung;
-    double basisVerbrauch;
+struct Battery{
+    double maxCapacity;
+    double currentCharge;
+    double baseConsumption;
 };
 
-class Rakete{
+class Rocket{
     private:
     std::string name;
-    Booster zusatz_booster;
-    Spitze Raketen_spitze;
-    Rumpf Raketen_rumpf;
-    Kapsel Kommando_kapsel;
-    Triebwerk Haupttriebwerk;
-    Solarpanel PanelRechts;
-    Solarpanel PanelLinks;
-    Batterie Raketen_Batterie;
+    Booster auxiliaryBooster;
+    NoseCone rocketNose;
+    Fuselage rocketFuselage;
+    Capsule commandCapsule;
+    Engine mainEngine;
+    SolarPanel panelRight;
+    SolarPanel panelLeft;
+    Battery rocketBattery;
 
-    double m_ges;
-    double F_ges;
+    double massTotal;
+    double forceTotal;
 
-    bool Fallschirm_offen;
-    bool istgestartet;
-    bool booster_abgeworfen;
-    bool rumpf_abgeworfen;
-    bool spitze_abgeworfen;
-    bool triebwerk_abgeworfen;
+    bool parachuteOpen;
+    bool hasLaunched;
+    bool boosterJettisoned;
+    bool fuselageJettisoned;
+    bool noseJettisoned;
+    bool engineJettisoned;
 
     public:
-    Rakete(std::string name, Booster b, Spitze p, Rumpf r, Kapsel k, Triebwerk t, Solarpanel s, Batterie ba);
+    Rocket(std::string name, Booster b, NoseCone n, Fuselage f, Capsule c, Engine e, SolarPanel s, Battery ba);
 
-    //Aktionen
-    void starte();
-    void wirf_booster_ab();
-    void wirf_rumpf_ab();
-    void wirf_spitze_ab();
-    void wirf_triebwerk_ab();
-    void fahresolarpanelaus();
-    void richtePanelzurSonne();
-    void berechne_stromverbrauch();
-    void weg_zum_mond();
-    void mond_phase();
-    void zurück_zur_erde();
-    void landesequenz();
-    //2.Rang Aktionen
-    void berechnePhysik();
-    //getter
-    std::string getStatusBericht();
-    //setter
-
+    // Actions
+    void launch();
+    void deployBooster();
+    void deployFuselage();
+    void deployNose();
+    void deployEngine();
+    void deploySolarPanel();
+    void pointPanelToSun();
+    void calculatePowerConsumption();
+    void flyToMoon();
+    void moonPhase();
+    void returnToEarth();
+    void landingSequence();
+    // secondary actions
+    void computePhysics();
+    // getters
+    std::string getStatusReport();
+    // setters
 };
 
 #endif
