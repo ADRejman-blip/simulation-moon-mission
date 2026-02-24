@@ -54,6 +54,7 @@ struct Battery{
     double maxCapacity;
     double currentCharge;
     double baseConsumption;
+    double mass;
 };
 
 class Rocket{
@@ -68,8 +69,19 @@ class Rocket{
     SolarPanel panelLeft;
     Battery rocketBattery;
 
-    double massTotal;
+    // Status of the physics
+    double currentHeight;       // in m
+    double currentSpeed;        // in m/s
+    double currentAcceleration; // in m/s^2
+    double currentFuel;         // in kg
+    double currentBatteryCharge;// in Joule/%
+    double totalMass;           // in kg (will change)
     double forceTotal;
+
+    // basic status information
+    bool isLaunched;
+    bool engineOn;
+    bool parachuteDeployed;
 
     bool parachuteOpen;
     bool hasLaunched;
