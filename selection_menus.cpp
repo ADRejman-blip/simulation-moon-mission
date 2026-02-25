@@ -345,33 +345,69 @@ SolarPanel SolarPanel_selection_menu(){
     bool false_selection = false;
     SolarPanel selected_SolarPanel;
     do {
-    cout << "Please pick your Engine\n";
-    cout << "Type 1 for the Merlin 1D\nType 2 for Raptor V2\n Type 3 for Rocketdyne F-1\nType 4 for Aerojet RL10\nType 5 for RS-25 SSME\n";
+    cout << "Please pick your SolarPanel\n";
+    cout << "Type 1 for the ISS ROLL-Out Solar Array\nType 2 for Juno Jupiter Probe Arrays\n Type 3 for Hubble Space Telescope Arrays\nType 4 for Standart Telecom Satellite Array\nType 5 for CubeSat Deployable Array\n";
     cin >> SolarPanel_selection;
     
     switch (SolarPanel_selection)
         {
         case 1:
+        selected_SolarPanel.angleToSun = 0.0;
+        selected_SolarPanel.area = 350.0;
+        selected_SolarPanel.efficiency = 0.30;
+        selected_SolarPanel.isBroken = false;
+        selected_SolarPanel.isDeployed = false;
+        selected_SolarPanel.mass = 1400.0;
+        selected_SolarPanel.model = "iROSA (ISS)";
+
             
             false_selection = false;
             break;
 
         case 2:
+        selected_SolarPanel.angleToSun = 0.0;
+        selected_SolarPanel.area = 60.0;
+        selected_SolarPanel.efficiency = 0.29;
+        selected_SolarPanel.isBroken = false;
+        selected_SolarPanel.isDeployed = false;
+        selected_SolarPanel.mass = 340.0;
+        selected_SolarPanel.model = "Juno Deep Space";
       
         false_selection = false;
             break;
 
         case 3:
+        selected_SolarPanel.angleToSun = 0.0;
+        selected_SolarPanel.area = 30.0;
+        selected_SolarPanel.efficiency = 0.15;
+        selected_SolarPanel.isBroken = false;
+        selected_SolarPanel.isDeployed = false;
+        selected_SolarPanel.mass = 300;
+        selected_SolarPanel.model = "Hubble Legacy Array";
         
         false_selection = false;
             break;
 
         case 4:
+        selected_SolarPanel.angleToSun = 0.0;
+        selected_SolarPanel.area = 40.0;
+        selected_SolarPanel.efficiency = 0.25;
+        selected_SolarPanel.isBroken = false;
+        selected_SolarPanel.isDeployed = false;
+        selected_SolarPanel.mass = 200.0;
+        selected_SolarPanel.model = "Commercial Geo-Sat";
         
         false_selection = false;
             break;    
 
         case 5:
+        selected_SolarPanel.angleToSun = 0.0;
+        selected_SolarPanel.area = 0.1;
+        selected_SolarPanel.efficiency = 0.28;
+        selected_SolarPanel.isBroken = false;
+        selected_SolarPanel.isDeployed = false;
+        selected_SolarPanel.mass = 1.5;
+        selected_SolarPanel.model = "Cubeat micro-Array";
         
         false_selection = false;
             break;
@@ -383,7 +419,7 @@ SolarPanel SolarPanel_selection_menu(){
 
         }
     } while(false_selection == true);
-        cout << "You selected" << '\n';
+        cout << "You selected the model:" << selected_SolarPanel.model << "\nThe area of your SolarPanel is:" << selected_SolarPanel.area << "\nThe efficiency is:" << selected_SolarPanel.efficiency  << " percent of the effected energy" << "\nThe mass is " << selected_SolarPanel.mass << '\n';
             return selected_SolarPanel;
 }
 
@@ -392,33 +428,53 @@ Battery Battery_selection_menu(){
     bool false_selection = false;
     Battery selected_Battery;
     do {
-    cout << "Please pick your Engine\n";
-    cout << "Type 1 for the Merlin 1D\nType 2 for Raptor V2\n Type 3 for Rocketdyne F-1\nType 4 for Aerojet RL10\nType 5 for RS-25 SSME\n";
+    cout << "Please pick your Battery\n";
+    cout << "Type 1 for the Standard Li-Ion Satellitebattery\nType 2 for Apollo Silver-Zinc Battery\n Type 3 for ISS main Baterry\nType 4 for Deep Space test Battery\nType 5 for CubeSat Micro-Battery\n";
     cin >> Battery_selection;
     
     switch (Battery_selection)
         {
         case 1:
+        selected_Battery.baseConsumption = 500.0;
+        selected_Battery.currentCharge = 15000.0;
+        selected_Battery.mass = 50.0;
+        selected_Battery.maxCapacity = 15000.0;
             
             false_selection = false;
             break;
 
         case 2:
+        selected_Battery.baseConsumption = 1500.0;
+        selected_Battery.currentCharge = 40000.0;
+        selected_Battery.mass = 150.0;
+        selected_Battery.maxCapacity = 40000.0;
       
         false_selection = false;
             break;
 
         case 3:
+        selected_Battery.baseConsumption = 3500.0;
+        selected_Battery.currentCharge = 120000.0;
+        selected_Battery.mass = 430.0;
+        selected_Battery.maxCapacity = 120000.0;
         
         false_selection = false;
             break;
 
         case 4:
+        selected_Battery.baseConsumption = 150.0;
+        selected_Battery.currentCharge = 8000.0;
+        selected_Battery.mass = 35.0;
+        selected_Battery.maxCapacity = 8000.0;
         
         false_selection = false;
             break;    
 
         case 5:
+        selected_Battery.baseConsumption = 10.0;
+        selected_Battery.currentCharge = 100.0;
+        selected_Battery.mass = 1.2;
+        selected_Battery.maxCapacity = 100.0;
         
         false_selection = false;
             break;
@@ -430,6 +486,6 @@ Battery Battery_selection_menu(){
 
         }
     } while(false_selection == true);
-        cout << "You selected" << '\n';
+        cout << "You selected model: " << Battery_selection << "\nYour base Consumption is:" << selected_Battery.baseConsumption << "\nYour mass is:" << selected_Battery.currentCharge << "\nYour max capacity is:" << selected_Battery.maxCapacity << '\n';
             return selected_Battery;
 }
