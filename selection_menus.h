@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#include "Astronaut.h"
 #include "Rocket.h"
 
 Engine Engine_selection_menu();
@@ -9,5 +11,6 @@ NoseCone NoseCone_selection_menu();
 Booster Booster_selection_menu();
 SolarPanel SolarPanel_selection_menu();
 Battery Battery_selection_menu();
+std::vector<Astronaut> Astronaut_selection_menu(Capsule selected_Capsule);
 
 

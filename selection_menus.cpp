@@ -1,6 +1,9 @@
 #include <iostream>
+#include <vector>
+#include <string>
 #include "Rocket.h"
 #include "selection_menus.h"
+#include "Astronaut.h"
 using std::cout;
 using std::cin;
 
@@ -488,4 +491,63 @@ Battery Battery_selection_menu(){
     } while(false_selection == true);
         cout << "You selected model: " << Battery_selection << "\nYour base Consumption is:" << selected_Battery.baseConsumption << "\nYour mass is:" << selected_Battery.currentCharge << "\nYour max capacity is:" << selected_Battery.maxCapacity << '\n';
             return selected_Battery;
+
+}
+
+std::vector<Astronaut> Astronaut_selection_menu(Capsule selected_Capsule){
+    std::vector<Astronaut> crew;
+
+    cout << "\n=== CREW SELECTION ===" << std::endl;
+    cout << "Your capsule has space for " << selected_Capsule.maxCrew << " astronauts." << std::endl;
+
+for(int i = 0;i < selected_Capsule.maxCrew;i++){
+    std::string name;
+    int age;
+    double weight;
+    std::string profession;
+  
+
+    cout << "\n--- Astronaut " << (i + 1) << " ---" << std::endl;
+
+        cout << "Enter name: ";
+        cin >> name; //
+        
+        cout <<  "Enter age: ";
+        cin >> age;
+        
+        cout << "Enter weight (kg): ";
+        cin >> weight; // 
+        
+        int inti;
+        cout << "what profession should your astronaut have?" << '\n';
+        cout << "Type 1 for Geo scientist\nType 2 for Pilot\nType 3 for Engineer\nType 4 for Citicen of Agartha\n";
+        cin >> inti;
+        switch(inti){
+            case 1:
+            profession = "Geo scientist";
+            break;
+            case 2:
+            profession = "Pilot";
+            break;
+            case 3:
+            profession = "Engineer";
+            break;
+            case 4:
+            profession = "Citicen of Agartha";
+            break;
+            default:
+            cout << "Invalid input. Profession set to Pilot";
+            profession = "Pilot";
+            break;
+        }
+        Astronaut realAstro(name,age,weight,profession);
+
+        // 
+        crew.push_back(realAstro);
+
+}
+
+    cout << "\nCrew successfully boarded!" << std::endl;
+    return crew; //
+
 }
